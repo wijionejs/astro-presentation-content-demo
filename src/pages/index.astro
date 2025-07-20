@@ -1,11 +1,38 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import { getCollection } from "astro:content";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const localPosts = await getCollection("localPosts");
+const remotePosts = await getCollection("remotePosts");
 ---
 
 <Layout>
-	<Welcome />
+  <div class="flex justify-center gap-10">
+    <div class="w-3xs">
+      <h2 class="font-bold text-2xl mb-5">Local posts</h2>
+
+      <ul>
+        {
+          localPosts.map((post) => (
+            <li class="mb-3 transition hover:text-fuchsia-500">
+              <a href={`/local-post/${post.id}`}>{post.data.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="w-3xs">
+      <h2 class="font-bold text-2xl mb-5">Remote posts</h2>
+
+      <ul>
+        {
+          remotePosts.map((post) => (
+            <li class="mb-3 transition hover:text-fuchsia-500">
+              <a href={`/remote-post/${post.id}`}>{post.data.title}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
 </Layout>
