@@ -1,4 +1,0 @@
-{
-  "title": "A local post again",
-  "body": "The file() loader creates multiple entries from a single local file. Each entry in the file must have a unique id key property. It accepts a base file path to your file and optionally a parser function for data files it cannot parse automatically. Use this loader when your data file can be parsed as an array of objects."
-}

@@ -1,4 +1,0 @@
-{
-  "title": "Another local post",
-  "body": "Using a loader to fetch your data will automatically create a collection from your remote data. This gives you all the benefits of local collections, such as collection-specific API helpers such as getCollection() and render() to query and display your data, as well as schema validation."
-}

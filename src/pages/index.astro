@@ -2,37 +2,35 @@
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
-const localPosts = await getCollection("localPosts");
-const remotePosts = await getCollection("remotePosts");
+const posts = await getCollection("posts");
 ---
 
 <Layout>
-  <div class="flex justify-center gap-10">
-    <div class="w-3xs">
-      <h2 class="font-bold text-2xl mb-5">Local posts</h2>
+  <div>
+    <h2 class="font-bold text-2xl mb-5 text-center">My Astro blog</h2>
 
-      <ul>
-        {
-          localPosts.map((post) => (
-            <li class="mb-3 transition hover:text-fuchsia-500">
-              <a href={`/local-post/${post.id}`}>{post.data.title}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-    <div class="w-3xs">
-      <h2 class="font-bold text-2xl mb-5">Remote posts</h2>
-
-      <ul>
-        {
-          remotePosts.map((post) => (
-            <li class="mb-3 transition hover:text-fuchsia-500">
-              <a href={`/remote-post/${post.id}`}>{post.data.title}</a>
-            </li>
-          ))
-        }
-      </ul>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 max-w-4xl mx-auto">
+      {
+        posts.map((post) => (
+          <div class="rounded-lg overflow-hidden shadow-lg bg-[rgb(255,255,255,0.3)]">
+            <div class="">
+              <a href={`/${post.id}`}>
+                <img
+                  src={post.data.image}
+                  alt={post.data.title}
+                  class="h-64 w-full object-cover"
+                />
+              </a>
+            </div>
+            <div class="p-5">
+              <a href={`/${post.id}`} class="transition hover:text-fuchsia-500">
+                <h2 class="font-bold text-xl mb-2">{post.data.title}</h2>
+              </a>
+              <p>{post.data.description}</p>
+            </div>
+          </div>
+        ))
+      }
     </div>
   </div>
 </Layout>
