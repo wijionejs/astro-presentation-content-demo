@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+}
+
+const { post } = Astro.props;
+---
+
+<div class="rounded-lg overflow-hidden shadow-lg bg-[rgb(255,255,255,0.3)]">
+  <div class="">
+    <a href={`/${post.id}`}>
+      <img
+        src={post.data.image}
+        alt={post.data.title}
+        class="h-64 w-full object-cover"
+      />
+    </a>
+  </div>
+  <div class="p-5">
+    <a href={`/${post.id}`} class="transition hover:text-fuchsia-500">
+      <h2 class="font-bold text-xl mb-2">{post.data.title}</h2>
+    </a>
+    <p>{post.data.description}</p>
+  </div>
+</div>
